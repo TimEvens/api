@@ -1,17 +1,18 @@
 package org.openbmp.api.jsonresponse;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openbmp.api.dto.RouterDTO;
 
+import java.io.Serializable;
 import java.util.List;
 
-@JsonRootName(value = "tablename")
-public class RouterListResponse {
+//@JsonRootName(value = "tablename")
+public class GenericJSONResponse<T> implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     private Integer cols;
 
-    private List<RouterDTO> data;
+    private List<T> data;
 
     private Integer size;
 
@@ -19,14 +20,13 @@ public class RouterListResponse {
     private Long fetchTime_ms;
 
 
-    public RouterListResponse(Integer cols, List<RouterDTO> data, Integer size, Long queryTime_ms, Long fetchTime_ms) {
+    public GenericJSONResponse(Integer cols, List<T> data, Integer size, Long queryTime_ms, Long fetchTime_ms) {
         this.cols = cols;
         this.data = data;
         this.size = size;
         this.queryTime_ms = queryTime_ms;
         this.fetchTime_ms = fetchTime_ms;
     }
-
 
     @JsonProperty("cols")
     public Integer getCols() {
@@ -38,11 +38,11 @@ public class RouterListResponse {
     }
 
     @JsonProperty("data")
-    public List<RouterDTO> getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(List<RouterDTO> data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
 

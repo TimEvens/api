@@ -1,16 +1,15 @@
 package org.openbmp.api.rest.v1;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.openbmp.api.dto.RouterCountDTO;
 import org.openbmp.api.dto.RouterDTO;
 import org.openbmp.api.exception.OpenBMPApiException;
 import org.openbmp.api.helpers.OKResponseWithCORSHeaders;
 import org.openbmp.api.helpers.WrapRootValueForResponseJson;
-import org.openbmp.api.jsonresponse.RouterListResponse;
+import org.openbmp.api.jsonresponse.GenericJSONResponse;
 import org.openbmp.api.service.RouterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,11 +20,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Component
 @Path("/v1/routers")
@@ -48,16 +44,24 @@ public class RouterResource  {
                                @QueryParam("where") String where,
                                @QueryParam("orderby") String orderby) {
 
-        RouterListResponse jstr = null;
-        List<RouterDTO> routersList = null;
+        long fetchTime = System.currentTimeMillis();
+
+        GenericJSONResponse jstr = null;
+        List<RouterDTO> routersList = new ArrayList<RouterDTO>();
+
+        String searchCriteria = "none";
         try {
-            routersList = routerServiceImpl.findAllRouters(limit,withGeo,where,orderby);
+            routersList = routerServiceImpl.findAllRoutersBySearchCriteria(searchCriteria,"1",limit,withGeo,where,orderby);
         } catch (OpenBMPApiException e) {
             /*jstr = new ListResponse("ERROR", e.getMessage());*/
             e.printStackTrace();
         }
 
-        jstr = new RouterListResponse(8,routersList,routersList.size(),Long.valueOf(121),Long.valueOf(133));
+       /* if (routersList == null) {
+            throw new UnknownResourceException();
+        }*/
+
+        jstr = new GenericJSONResponse(8,routersList,routersList.size(),Long.valueOf(121),System.currentTimeMillis() - fetchTime);
 
         return OKResponseWithCORSHeaders.appendCORStoBody(WrapRootValueForResponseJson.wrapRootValue(jstr,"Routers"));
 
@@ -73,27 +77,33 @@ public class RouterResource  {
     })
     public Response getRoutersStatusCount(){
 
-        Map<String,String> statusCountMap = new HashMap<String,String>();
+        long fetchTime = System.currentTimeMillis();
+
+        GenericJSONResponse jstr = null;
+        List<Object[]> records = new ArrayList<Object[]>();
+        List<RouterCountDTO> countRecordsList = new ArrayList<RouterCountDTO>();
 
         try {
-            statusCountMap = routerServiceImpl.getRoutersStatusCount();
+            records = routerServiceImpl.getRoutersStatusCount();
         } catch (OpenBMPApiException e) {
             e.printStackTrace();
         }
 
-        String json = null;
-        try {
-            StringWriter sw = new StringWriter();
+        int rowSize = records.size();
+        int colSize = records.get(1).length;
 
-            new ObjectMapper().writer().writeValue(sw,statusCountMap);
+        for (Object[] record : records) {
+            RouterCountDTO bpcDTO = new RouterCountDTO();
 
-            json = sw.toString();
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            bpcDTO.setStatusType(record[0].toString());
+            bpcDTO.setCount(record[1].toString());
+
+            countRecordsList.add(bpcDTO);
         }
-        return OKResponseWithCORSHeaders.appendCORStoBody(WrapRootValueForResponseJson.wrapRootValue(json,"Routers"));
+
+        jstr = new GenericJSONResponse(colSize,countRecordsList,rowSize,Long.valueOf(121),System.currentTimeMillis() - fetchTime);
+
+        return OKResponseWithCORSHeaders.appendCORStoBody(WrapRootValueForResponseJson.wrapRootValue(jstr,"Routers"));
 
     }
 
@@ -109,20 +119,23 @@ public class RouterResource  {
                                        @QueryParam("where") String where,
                                        @QueryParam("orderby") String orderby) {
 
+        long fetchTime = System.currentTimeMillis();
 
-        RouterListResponse jstr = null;
-        List<RouterDTO> routersList = null;
+        GenericJSONResponse jstr = null;
+        List<RouterDTO> routersList = new ArrayList<RouterDTO>();
+
+        String searchCriteria = "up";
 
         try {
             // Get data from database
            /* int recordCount = routerServiceImpl.getRecordCountByFilter();*/
-            routersList = routerServiceImpl.findAllRoutersUp(limit,where,orderby);
+            routersList = routerServiceImpl.findAllRoutersBySearchCriteria(searchCriteria,"1",limit,false,where,orderby);
         } catch (OpenBMPApiException e) {
             /*jstr = new ListResponse("ERROR", e.getMessage());*/
             e.printStackTrace();
         }
 
-        jstr = new RouterListResponse(8, routersList,routersList.size(),Long.valueOf(121),Long.valueOf(133));
+        jstr = new GenericJSONResponse(8, routersList,routersList.size(),Long.valueOf(121),System.currentTimeMillis() - fetchTime);
 
         return OKResponseWithCORSHeaders.appendCORStoBody(WrapRootValueForResponseJson.wrapRootValue(jstr,"Routers"));
 
@@ -142,20 +155,22 @@ public class RouterResource  {
                                          @QueryParam("where") String where,
                                          @QueryParam("orderby") String orderby) {
 
+        long fetchTime = System.currentTimeMillis();
 
-        RouterListResponse jstr = null;
-        List<RouterDTO> routersList = null;
+        GenericJSONResponse jstr = null;
+        List<RouterDTO> routersList = new ArrayList<RouterDTO>();
 
+        String searchCriteria = "down";
         try {
             // Get data from database
            /* int recordCount = routerServiceImpl.getRecordCountByFilter();*/
-            routersList = routerServiceImpl.findAllRoutersDown(limit,where,orderby);
+            routersList = routerServiceImpl.findAllRoutersBySearchCriteria(searchCriteria,"0",limit,false,where,orderby);
         } catch (OpenBMPApiException e) {
             /*jstr = new ListResponse("ERROR", e.getMessage());*/
             e.printStackTrace();
         }
 
-        jstr = new RouterListResponse(8, routersList,routersList.size(),Long.valueOf(121),Long.valueOf(133));
+        jstr = new GenericJSONResponse(8, routersList,routersList.size(),Long.valueOf(121),System.currentTimeMillis() - fetchTime);
 
         return OKResponseWithCORSHeaders.appendCORStoBody(WrapRootValueForResponseJson.wrapRootValue(jstr,"Routers"));
 

@@ -3,6 +3,7 @@ package org.openbmp.api.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /*@JsonPropertyOrder({"ip_address","router_AS","init_data", "name", "timestamp", "description", "isConnected", "isPassive", "term_reason_code", "term_reason_text"})*/
+
 public class RouterDTO {
 
     /*private String hash_id;*/

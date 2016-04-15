@@ -55,6 +55,7 @@ public class Router {
     @Column(name = "collector_hash_id")
     private String collector_hash_id;
 
+
     public Router(){
 
     }
