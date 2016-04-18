@@ -1,0 +1,434 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "OpenBMP REST API",
+        "description": "Powering Dashboards with the OpenBMP REST API",
+        "version": "1.0.0"
+    },
+    "host": "api.openbmp.org",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/v1",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/asn_stats": {
+            "get": {
+                "summary": "Per ASN Statistics",
+                "description": "This As Statistics Endpoint returns a list of all active ASN's in the DB.\n",
+                "tags": [
+                    "As Statistics"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of all active ASNs in the DB.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AS Statistics"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/asn_stats/{asn}": {
+            "get": {
+                "summary": "AS Statistics for an ASN",
+                "description": "This As Statistics Endpoint returns the AS statistics for the provided ASN.\n",
+                "parameters": [
+                    {
+                        "name": "asn",
+                        "in": "path",
+                        "description": "ASN number.",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "tags": [
+                    "As Statistics"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of AS Statistics for the provided ASN",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AS Statistics"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/asn_stats/ipv4": {
+            "get": {
+                "summary": "Get the top ASN's originating prefixes or that are transit to other ASN's",
+                "description": "This As Statistics Endpoint lists the top ASN's originating prefixes or that are transit to other ASN's.",
+                "parameters": [
+                    {
+                        "name": "topTransit",
+                        "in": "query",
+                        "description": "Get the top transit prefixes.",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "topOrigin",
+                        "in": "query",
+                        "description": "Get the top originating ASN's.",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "tags": [
+                    "As Statistics"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of top ASN's originating prefixes or that are transit to other ASN's",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AS Statistics"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/asn_stats/ipv6": {
+            "get": {
+                "summary": "Get the top ASN's originating prefixes or that are transit to other ASN's",
+                "description": "This As Statistics Endpoint lists the top ASN's originating prefixes or that are transit to other ASN's",
+                "parameters": [
+                    {
+                        "name": "topTransit",
+                        "in": "query",
+                        "description": "Get the top transit prefixes.",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "topOrigin",
+                        "in": "query",
+                        "description": "Get the top originating ASN's.",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "tags": [
+                    "As Statistics"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of top ASN's originating prefixes or that are transit to other ASN's",
+                        "schema": {
+                            "type": "array",
+                            "items": null,
+                            "$ref": "#/definitions/AS Statistics"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/downstream/{asn}": {
+            "get": {
+                "summary": "List all downstream ASN's for the given ASN",
+                "description": "This downstream Endpoint returns all the downstream ASN's for the given ASN.\n",
+                "parameters": [
+                    {
+                        "name": "asn",
+                        "in": "path",
+                        "description": "ASN number.",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "tags": [
+                    "Downstream"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of downstream ASN's for the given ASN",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Downstream"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/downstream/{asn}/count": {
+            "get": {
+                "summary": "List all downstream ASN's for the given ASN and count the number of distinct prefixes (each prefix/len + peer is counted)",
+                "description": "This downstream Endpoint returns all the downstream ASN's for the given ASN and count the number of distinct prefixes.\n",
+                "parameters": [
+                    {
+                        "name": "asn",
+                        "in": "path",
+                        "description": "ASN number.",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "tags": [
+                    "Downstream"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of downstream ASN's for the given ASN and count the number of distinct prefixes",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Downstream"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/downstream/{asn}/peer/count": {
+            "get": {
+                "summary": "List all downstream ASN's for the given ASN and count the number of distinct prefixes per peer",
+                "description": "This downstream Endpoint returns all downstream ASN's for the given ASN and count the number of distinct prefixes per peer.\n",
+                "parameters": [
+                    {
+                        "name": "asn",
+                        "in": "path",
+                        "description": "ASN number.",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "tags": [
+                    "Downstream"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of downstream ASN's for the given ASN and count the number of distinct prefixes per peer",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Downstream"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/downstream/peer/{peerHashId}": {
+            "get": {
+                "summary": "Distinctly lists the ASN's that are directly to the right of the peer ASN. E.g. ASPath's { \"10 20, 30\", \"10 9 8\"} would produce a list containing 20 and 9 since those ASNs are to the right of the peering ASN of 10. Each AS will have the ASN name, organization, and country.",
+                "description": "This downstream Endpoint returns all the ASN's that are directly to the right of the peer AS.\n",
+                "parameters": [
+                    {
+                        "name": "peerHashId",
+                        "in": "path",
+                        "description": "Peer Hash Id.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Downstream"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of downstream ASN's that are directly to the right of the peer AS",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Downstream"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "AS Statistics": {
+            "type": "object",
+            "properties": {
+                "asn": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "asn value"
+                },
+                "isTransit": {
+                    "type": "string",
+                    "format": "byte",
+                    "description": "isTransit value"
+                },
+                "isOrigin": {
+                    "type": "string",
+                    "format": "byte",
+                    "description": "isOrigin value"
+                },
+                "transit_v4_prefixes": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "transit_v4_prefixes value"
+                },
+                "transit_v6_prefixes": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "transit_v6_prefixes value"
+                },
+                "origin_v4_prefixes": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "origin_v4_prefixes value"
+                },
+                "origin_v6_prefixes": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "origin_v6_prefixes value"
+                },
+                "repeats": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "repeats value"
+                },
+                "as_name": {
+                    "type": "string",
+                    "description": "as_name value"
+                },
+                "country": {
+                    "type": "string",
+                    "description": "country value"
+                },
+                "org_name": {
+                    "type": "string",
+                    "description": "org_name value"
+                },
+                "timestamp": {
+                    "type": "string",
+                    "description": "timestamp value"
+                }
+            }
+        },
+        "Downstream": {
+            "type": "object",
+            "properties": {
+                "asn": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "asn value"
+                },
+                "as_name": {
+                    "type": "string",
+                    "description": "as_name value"
+                },
+                "city": {
+                    "type": "string",
+                    "description": "city value"
+                },
+                "state_prov": {
+                    "type": "string",
+                    "description": "state_prov value"
+                },
+                "country": {
+                    "type": "string",
+                    "description": "country value"
+                },
+                "org_name": {
+                    "type": "string",
+                    "description": "org_name value"
+                },
+                "Prefixes_Learned": {
+                    "type": "integer",
+                    "description": "count value"
+                },
+                "PeerAddr": {
+                    "type": "string",
+                    "description": "peer addr value"
+                },
+                "peer_hash_id": {
+                    "type": "string",
+                    "description": "peer_hash_id value"
+                },
+                "PeerAsn": {
+                    "type": "string",
+                    "description": "Peer Asn Value"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
