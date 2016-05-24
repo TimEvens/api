@@ -1,0 +1,14 @@
+<div class="dashboard-panel__header">
+    <h3 class="text-uppercase pull-left"><a href="notifications" ng-bind="'_Notifications_' | i18n"></a></h3>
+    <div class="buttons pull-right">
+        <a class="link" create-notification="getConversations()" ng-if="profile.role === 'admin'"><span class="icon-plus"></span></a>
+    </div>
+</div>
+<notification-list options="listOptions"></notification-list>
+<p class="text-right" ng-if="conversations.length">
+    <a href="notifications" ng-bind="'_ViewAll_' | i18n"></a>
+</p>
+<div class="empty-feed" ng-if="!conversations.length">
+    <div class="empty-feed__icon"><span class="icon-alert"></span></div>
+    <h4 class="empty-feed__title">No New Notifications</h4>
+</div>

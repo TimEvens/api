@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <button class="close" ng-click="$dismiss()"><span class="icon-close"></span></button>
+    <h4 class="modal-title">
+        <small class="text-{{ severitiesByValue[notification.messages[0].severity].cssClass }}" title="{{ severitiesByValue[notification.messages[0].severity].tooltip }}">
+            <span class="{{ severitiesByValue[notification.messages[0].severity].iconClass }}"></span>
+        </small>
+        <span ng-bind="notification.subject"></span>
+    </h4>
+    <h5 class="subheading" ng-bind-template="{{ notification.messages[0].from.name }} &bull; {{ notification.messages[0].created | fromNowNoZone }}"></h5>
+</div>
+<div class="modal-body">
+    <div ng-bind-html="notification.messages[0].body | parseUrlFilter:'_blank':true"></div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="button button--danger pull-left" ng-click="delete()" ga-collect="HU-NotifViewDelete" ng-bind="'_Delete_' | i18n"></button>
+    <button class="button" ng-click="$dismiss()" ga-collect="HU-NotifViewCancel" ng-bind="'_Close_' | i18n"></button>
+    <span ng-repeat="r in notification.readStatus" ng-if="r.userId == profile.id">
+        <span ng-if="r.status != 1">
+            <a class="button button--primary" ng-click="markAsRead(notification.messages[0].messageId, r); $event.stopPropagation();" title="{{ '_Acknowledge_' | i18n }}"><span class="icon-mail"></span> Mark as Read</a>
+        </span>
+        <span ng-if="r.status == 1">
+            <a class="button button--primary" title="{{ '_HUNotificationsAck_' | i18n }} {{ r.dateRead | fromNowNoZone }}" disabled><span class="icon-mail-read"></span> Read</a>
+        </span>
+    </span>
+</div>

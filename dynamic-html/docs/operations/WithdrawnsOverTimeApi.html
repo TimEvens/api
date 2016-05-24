@@ -1,0 +1,323 @@
+<div class="main-content">
+  <h2><a name=""></a></h2>
+  <p>This is the  API</p>
+
+  <h2><a name="withdrawnsPeerPeerHashIdTopGet"></a>withdrawnsPeerPeerHashIdTopGet</h2>
+  <hr>
+  <p></p>
+  <p>This Withdrawns Endpoint for a given peer, return the top prefixes by number of prefixes withdrawn in past &#39;hours&#39;. Limit defaults to 25 and hours defaults to 2.\n</p>
+  <h3 class="section">URL</h3>
+  <code>https://api.openbmp.org/v1/withdrawns/peer/{peerHashId}/top</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="TopPrefixesByPeer"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">peerHashId</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The peerHashId value</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">limit</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">The Limit Value in SQL query</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">hours</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">The value in hours</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">timestamp</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The timestamp string</p>
+	  </li>
+  </ul>
+  <h2><a name="withdrawnsPeerPeerHashIdTopIntervalMinutesGet"></a>withdrawnsPeerPeerHashIdTopIntervalMinutesGet</h2>
+  <hr>
+  <p></p>
+  <p>This Withdrawns Endpoint for a given peer, return the count of updates per interval for up to max limit size. Limit defaults to 25.\n</p>
+  <h3 class="section">URL</h3>
+  <code>https://api.openbmp.org/v1/withdrawns/peer/{peerHashId}/top/interval/{minutes}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="IntervalCount"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">peerHashId</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The peerHashId value</p>
+	  </li>
+	  <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">minutes</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">The value in minutes</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">limit</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">The Limit Value in SQL query</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">timestamp</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The timestamp string</p>
+	  </li>
+  </ul>
+  <h2><a name="withdrawnsTopGet"></a>withdrawnsTopGet</h2>
+  <hr>
+  <p></p>
+  <p>This Withdrawns Endpoint returns the top prefixes by number of prefixes withdrawn in past &#39;hours&#39;. Limit defaults to 25 and hours defaults to 2.</p>
+  <h3 class="section">URL</h3>
+  <code>https://api.openbmp.org/v1/withdrawns/top</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="TopPrefixes"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">searchPeer</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The searchPeer value</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">searchPrefix</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The searchPrefix value</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">groupBy</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The Group By clause in SQL query</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">joinWhoIsPrefix</span>
+      <span class="param-type">Boolean</span>
+      
+      <p class="param-description">Boolean Flag</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">limit</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">The Limit Value in SQL query</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">startTimestamp</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The start timestamp string</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">endTimestamp</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The end timestamp string</p>
+	  </li>
+  </ul>
+  <h2><a name="withdrawnsTopIntervalMinutesGet"></a>withdrawnsTopIntervalMinutesGet</h2>
+  <hr>
+  <p></p>
+  <p>This Withdrawns Endpoint returns the count of updates per interval for up to max limit size. Limit defaults to 25.\n</p>
+  <h3 class="section">URL</h3>
+  <code>https://api.openbmp.org/v1/withdrawns/top/interval/{minutes}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="IntervalCount"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">minutes</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">The value in minutes</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">limit</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">The Limit Value in SQL query</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">timestamp</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The timestamp string</p>
+	  </li>
+  </ul>
+  <h2><a name="withdrawnsTrendIntervalSecondsGet"></a>withdrawnsTrendIntervalSecondsGet</h2>
+  <hr>
+  <p></p>
+  <p>This Withdrawns Endpoint placeholder.\n</p>
+  <h3 class="section">URL</h3>
+  <code>https://api.openbmp.org/v1/withdrawns/trend/interval/{seconds}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="IntervalCount"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">seconds</span>
+      <span class="param-type">Float</span>
+      
+      <p class="param-description">The value in seconds</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">searchPeer</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The searchPeer value</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">searchPrefix</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The searchPrefix value</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">startTimestamp</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The start timestamp string</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">endTimestamp</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The end timestamp string</p>
+	  </li>
+  </ul>
+</div>

@@ -1,0 +1,71 @@
+<div ng-controller="profileController">
+    <div class="modal-header">
+        <button class="close" ng-click="$dismiss()"><span class="icon-close"></span></button>
+        <h4 class="modal-title" ng-bind="'_MyProfile_' | i18n"></h4>
+    </div>
+    <div class="modal-body">
+        <div class="profile-avatar" style="background-image: url({{ user.avatarUrl }})"></div>
+        <form name="profileUserForm" ng-submit="save()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <div class="form-group__text">
+                        <input id="userId" type="text" ng-model="user.userId" name="userId" readonly>
+                        <label for="userId" class="control-label text-muted text-right" ng-bind="'_CiscoID_' | i18n"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group__text">
+                        <input id="firstName" type="text" ng-model="user.firstName" name="firstName" ng-maxlength="32">
+                        <label for="firstName" ng-bind="'_FirstName_' | i18n"></label>
+                    </div>
+                </div>
+                <div class="help-block" ng-show="profileUserForm.firstName.$dirty && profileUserForm.firstName.$invalid">
+                    <span class="icon-exclamation-circle"></span>
+                    <span ng-bind="'_HUProfileNameError_' | i18n"></span>
+                </div>
+                <div class="form-group">
+                    <div class="form-group__text">
+                        <input id="lastName" type="text" ng-model="user.lastName" name="lastName" ng-maxlength="32">
+                        <label for="lastName" ng-bind="'_LastName_' | i18n"></label>
+                    </div>
+                </div>
+                <div class="help-block" ng-show="profileUserForm.lastName.$dirty && profileUserForm.lastName.$invalid">
+                    <span class="icon-exclamation-circle"></span>
+                    <span ng-bind="'_HUProfileNameError_' | i18n"></span>
+                </div>
+                <div class="form-group">
+                    <div class="form-group__text">
+                        <input id="email" type="email" ng-model="user.email" name="email" ng-maxlength="256">
+                        <label for="email" ng-bind="'_Email_' | i18n"></label>
+                    </div>
+                </div>
+                <div class="help-block" ng-show="profileUserForm.email.$dirty && profileUserForm.email.$invalid">
+                    <span class="icon-exclamation-circle"></span>
+                    <span ng-bind="'_HUProfileEmailError_' | i18n"></span>
+                </div>
+                <div class="form-group">
+                    <div class="form-group__text">
+                        <input id="avatarUrl" type="url" ng-model="user.avatarUrl" name="avatarUrl" ng-maxlength="512">
+                        <label for="avatarUrl" ng-bind="'_Avatar_' | i18n"></label>
+                    </div>
+                </div>
+                <div class="help-block" ng-show="profileUserForm.avatarUrl.$dirty && profileUserForm.avatarUrl.$invalid">
+                    <span class="icon-exclamation-circle"></span>
+                    <span ng-bind="'_HUProfileAvatarError_' | i18n"></span>
+                </div>
+                <div>
+                    <label class="checkbox">
+                        <input type="checkbox" ng-click="profileUserForm.$dirty=true;toggleGravatar()">
+                        <div class="checkbox__input"></div>
+                        <span class="checkbox__label" ng-bind="'_UseGravatarImage_' | i18n"></span>
+                    </label>
+                </div>
+                <input class="ng-hide" type="submit">
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="button" ng-click="$dismiss()" ga-collect="HU-ProfCancel" ng-bind="'_Cancel_' | i18n"></button>
+        <button class="button button--primary" ng-click="save()" ng-disabled="!profileUserForm.$valid || !profileUserForm.$dirty" ga-collect="HU-ProfSave" ng-bind="'_Save_' | i18n"></button>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="apollo-body" ng-controller="collectionsController">
+    <apollo-header page-title="{{ '_Collections_' | i18n }}"></apollo-header>
+    <div class="apollo-content">
+        <div class="apollo-content__main">
+            <div class="container">
+                <div class="smart-content">
+                    <div class="smart-content__sidebar">
+                        <smart-search ng-if="searchOptions" options="searchOptions"></smart-search>
+                        <smart-filter ng-if="filterOptions" options="filterOptions"></smart-filter>
+                    </div>
+                    <div class="smart-content__main">
+                        <smart-toolbar options="toolbarOptions" sort-options="sortOptions" smart-pager="pager">
+                            <span dropdown class="dropdown" ng-if="pager.selectedItems.length && !isGuest">
+                                <a dropdown-toggle class="dropdown-toggle button button--primary button--small" ng-bind-template="Bulk Actions ({{ pager.selectedItems.length }})"></a>
+                                <div class="dropdown-container">
+                                    <ul class="dropdown-nav">
+                                        <li><a ng-click="actions.delete()" ng-bind="'_Delete_' | i18n"></a></li>
+                                    </ul>
+                                </div>
+                            </span>
+                        </smart-toolbar>
+                        <div class="notifications">
+                            <div class="notification" ng-repeat="collection in pager.data" ng-class="{'notification--selected': collection.selected}">
+                                <label class="checkbox" ng-click="toggleSelected($event, collection);">
+                                    <input type="checkbox" ng-checked="collection.selected" >
+                                    <div class="checkbox__input"></div>
+                                </label>
+                                <div class="notification__icon" title="{{ COLLECTION_TYPES[collection.applicationName].tooltip }}">
+                                    <span ng-class="COLLECTION_TYPES[collection.applicationName].iconClass"></span>
+                                </div>
+                                <div class="notification__body">
+                                    <a ng-click="viewCollection(collection)" ng-bind="collection.displayName"></a>
+                                </div>
+                                <div class="notification__timestamp" ng-bind="collection.count" title="{{ collection.createdDate | formatDateNoZone:'LLL' }}"></div>
+                                <div class="notification__actions" ng-if="!isGuest">
+                                    <div ng-click="toggleScoreboard($event, collection)" class="link" title="Show on {{ '_Dashboard_' | i18n }}">
+                                        <span class="icon-star" ng-class="{'text-warning-alt': collection.isTile, 'text-muted': !collection.isTile}"></span>
+                                    </div>
+                                    <div ng-click="edit(collection); $event.stopPropagation();" class="link" title="{{ '_EditCollection_' | i18n }}">
+                                        <span class="icon-edit"></span>
+                                    </div>
+                                    <div ng-click="delete(collection); $event.stopPropagation();" class="link" title="{{ '_DeleteCollection_' | i18n }}">
+                                        <span class="icon-trash"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <smart-loader2 ng-show="pager.data.length == 0" loading="pager.isLoading" text="{{ '_NoCollectionsFound_' | i18n }}"></smart-loader2>
+                        <smart-pager smart-pager="pager" label="toolbarOptions.title"></smart-pager>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <apollo-footer></apollo-footer>
+    </div>
+</div>

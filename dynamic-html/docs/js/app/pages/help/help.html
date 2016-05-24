@@ -1,0 +1,24 @@
+<div ng-controller="helpController">
+    <div class="modal-header">
+        <button class="close" ng-click="$dismiss()"><span class="icon-close"></span></button>
+        <h4 class="modal-title">
+            <span ng-bind="'_Help_' | i18n"></span>
+            <small ng-bind-template="{{ '_HUHelpVersion_' | i18n }}: {{ appVersion }}"></small>
+        </h4>
+    </div>
+    <div class="modal-body">
+        <p ng-bind="'_HUHelpMarqueeSubtitle_' | i18n"></p>
+        <p>
+            <a href="/docs/SupportAutomationAppletHelp.pdf" target="_blank">
+                <span ng-bind="'_ConsoleConfigurationGuide_' | i18n"></span>
+                <span class="icon-link"></span>
+            </a>
+        </p>
+        <p>
+            <a href="releaseNotes" ng-click="$dismiss()" ng-bind="'_ReleaseNotes_' | i18n" ga-collect="HU-ReleaseNotesLink"></a>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button class="button" ng-click="$dismiss()" ga-collect="HU-NotifViewCancel" ng-bind="'_Close_' | i18n"></button>
+    </div>
+</div>

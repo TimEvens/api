@@ -1,0 +1,23 @@
+<div class="dashboard-panel__header">
+    <h3 class="text-uppercase">
+        <a href="collections" ng-bind="'_Collections_' | i18n"></a>
+    </h3>
+</div>
+<div class="notifications">
+    <div class="notification" ng-repeat="collection in collections">
+        <div class="notification__icon" title="{{ COLLECTION_TYPES[collection.applicationName].tooltip }}">
+            <span ng-class="COLLECTION_TYPES[collection.applicationName].iconClass"></span>
+        </div>
+        <div class="notification__body">
+            <a ng-bind="collection.displayName" ng-href="{{ collection.href }}?cq={{ collection._id }}"></a>
+        </div>
+        <div class="notification__timestamp" ng-bind="collection.count"></div>
+    </div>
+</div>
+<p class="text-right" ng-if="collections.length">
+    <a href="collections" ng-bind="'_ViewAll_' | i18n"></a>
+</p>
+<div class="empty-feed" ng-if="!collections.length">
+    <div class="empty-feed__icon"><span class="icon-grid-view"></span></div>
+    <h4 class="empty-feed__title">No Collections</h4>
+</div>

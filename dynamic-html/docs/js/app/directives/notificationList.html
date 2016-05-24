@@ -1,0 +1,28 @@
+<div class="notifications" ng-class="{'notifications--hide-actions': isDashboard}">
+    <div class="notification" ng-repeat="conversation in data" ng-init="message = conversation.messages[0]" ng-class="{'notification--selected': conversation.selected}">
+        <label class="checkbox" ng-if="options.selectEnabled" ng-click="toggleSelected($event, conversation);">
+            <input type="checkbox" ng-checked="conversation.selected">
+            <div class="checkbox__input"></div>
+        </label>
+        <div class="notification__icon" title="{{ severitiesByValue[message.severity].tooltip }} &bull; {{ types[conversation.category].tooltip }}">
+            <span class="{{ types[conversation.category].iconClass }} text-{{ severitiesByValue[message.severity].cssClass }}"></span>
+        </div>
+        <div class="notification__body">
+            <a ng-bind="conversation.subject" ng-click="viewDetails(conversation)" title="{{ conversation.subject }}"></a>&nbsp;
+            <span ng-if="isDashboard" class="text-muted" ng-bind="message.body | htmlToText"></span>
+            <span ng-if="!isDashboard" class="text-muted" ng-bind-html="message.body | truncate:true:200 | parseUrlFilter:'_blank':true"></span>
+        </div>
+        <div class="notification__timestamp" ng-bind="message.created | fromNowNoZone" title="{{ message.created | formatDateNoZone:'LLL' }}"></div>
+        <div class="notification__actions">
+            <span ng-repeat="r in conversation.readStatus" ng-if="r.userId == profile.id">
+                <div ng-if="r.status != 1">
+                    <a class="link" ng-click="markAsRead(message.messageId, r); $event.stopPropagation();" title="{{ '_Acknowledge_' | i18n }}"><span class="icon-mail"></span></a>
+                </div>
+                <div ng-if="r.status == 1">
+                    <a class="link" title="{{ '_HUNotificationsAck_' | i18n }} {{ r.dateRead | fromNowNoZone }}" disabled><span class="icon-mail-read"></span></a>
+                </div>
+            </span>
+            <div ng-if="profile.role === 'admin'" ng-click="delete(conversation); $event.stopPropagation();" class="link" title="{{ '_DeleteNotification_' | i18n }}"><span class="icon-trash"></span></div>
+        </div>
+    </div>
+</div>

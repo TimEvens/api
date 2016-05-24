@@ -1,0 +1,14 @@
+{
+  "name": "highcharts-downsample",
+  "_cacheHeaders": {
+    "ETag": "\"56c84707-14da\"",
+    "Last-Modified": "Sat, 20 Feb 2016 10:59:19 GMT",
+    "Content-Length": "5338",
+    "Content-Type": "application/x-javascript"
+  },
+  "_release": "e-tag:56c84707-",
+  "main": "index.js",
+  "_source": "http://highcharts.base.is/highcharts-downsample.js",
+  "_target": "*",
+  "_originalSource": "http://highcharts.base.is/highcharts-downsample.js"
+}

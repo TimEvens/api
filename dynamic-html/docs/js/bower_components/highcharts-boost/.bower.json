@@ -1,0 +1,14 @@
+{
+  "name": "highcharts-boost",
+  "_cacheHeaders": {
+    "ETag": "\"655b46f9a455695cc185e351cc32be7a\"",
+    "Last-Modified": "Mon, 08 Feb 2016 13:27:50 GMT",
+    "Content-Length": "2656",
+    "Content-Type": "application/javascript"
+  },
+  "_release": "e-tag:655b46f9a",
+  "main": "index.js",
+  "_source": "https://code.highcharts.com/modules/boost.js",
+  "_target": "*",
+  "_originalSource": "https://code.highcharts.com/modules/boost.js"
+}

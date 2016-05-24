@@ -1,0 +1,32 @@
+<div class="apollo-body" ng-controller="notificationsController">
+    <apollo-header page-title="{{ '_Notifications_' | i18n }}"></apollo-header>
+    <div class="apollo-content">
+        <div class="apollo-content__main">
+            <div class="container">
+                <div class="smart-content">
+                    <div class="smart-content__sidebar">
+                        <smart-search ng-if="searchOptions" options="searchOptions"></smart-search>
+                        <smart-filter ng-if="filterOptions" options="filterOptions"></smart-filter>
+                    </div>
+                    <div class="smart-content__main">
+                        <smart-toolbar options="toolbarOptions" sort-options="sortOptions" smart-pager="pager">
+                            <a class="link" tooltip="{{ '_CreateNotifications_' | i18n }}" create-notification="pager.reload(true)" ng-if="profile.role === 'admin'"><span class="icon-plus"></span></a>
+                            <span dropdown class="dropdown" ng-if="pager.selectedItems.length">
+                                <a dropdown-toggle class="dropdown-toggle button button--primary button--small" ng-bind-template="Bulk Actions ({{ pager.selectedItems.length }})"></a>
+                                <div class="dropdown-container">
+                                    <ul class="dropdown-nav">
+                                        <li><a ng-click="actions.delete()" ng-bind="'_DeleteNotification_' | i18n"></a></li>
+                                    </ul>
+                                </div>
+                            </span>
+                        </smart-toolbar>
+                        <notification-list options="listOptions"></notification-list>
+                        <smart-loader2 ng-show="pager.data.length == 0" loading="pager.isLoading" text="{{ '_NoNotificationsFound_' | i18n }}"></smart-loader2>
+                        <smart-pager smart-pager="pager" label="toolbarOptions.title"></smart-pager>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <apollo-footer></apollo-footer>
+    </div>
+</div>

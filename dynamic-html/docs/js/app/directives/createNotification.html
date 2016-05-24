@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <button class="close" ng-click="$dismiss()" aria-hidden="true"><span class="icon-close"></span></button>
+    <h4 class="modal-title" ng-bind="'_CreateNotifications_' | i18n"></h4>
+</div>
+<div class="modal-body">
+    <form name="notificationForm" ng-submit="addMsg()" novalidate>
+        <fieldset>
+            <div class="form-group">
+                <div class="form-group__text">
+                    <input id="subject" type="text" ng-model="notification.subject" name="subject" required>
+                    <label for="subject" ng-bind="'_Subject_' | i18n"></label>
+                    <div class="required-block"><span class="icon-asterisk"></span></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group__text select">
+                    <label for="to" ng-bind="'_To_' | i18n"></label>
+                    <select id="to" ng-model="notification.recipient" ng-options="recipient.value for recipient in recipients"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group__text">
+                    <input id="from" type="text" ng-model="notification.fromId" name="from" ng-maxlength="128" required>
+                    <label for="from" ng-bind="'_From_' | i18n"></label>
+                    <div class="required-block"><span class="icon-asterisk"></span></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group__text">
+                    <textarea id="body" ng-model="notification.body" name="body" rows="2" required msd-elastic></textarea>
+                    <label for="body" ng-bind="'_Body_' | i18n"></label>
+                    <div class="required-block"><span class="icon-asterisk"></span></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group__text select">
+                    <label for="severity" ng-bind="'_Severity_' | i18n"></label>
+                    <select id="severity" ng-model="notification.severity" ng-options="severity.displayName for severity in severities | orderObjectBy : value : false"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group__text select">
+                    <label for="type" ng-bind="'_Type_' | i18n"></label>
+                    <select id="type" ng-model="notification.type" ng-options="type.displayName for (key, type) in types"></select>
+                </div>
+            </div>
+            <input class="ng-hide" type="submit">
+        </fieldset>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="button" ng-click="$dismiss()" ng-bind="'_Cancel_' | i18n"></button>
+    <button class="button button--primary" ng-click="addMsg()" ng-disabled="!notificationForm.$valid" ng-bind="'_Post_' | i18n"></button>
+</div>

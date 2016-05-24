@@ -1,0 +1,22 @@
+<div class="apollo-body" ng-controller="activityListController">
+    <apollo-header page-title="{{ '_Activity_' | i18n }}"></apollo-header>
+    <div class="apollo-content">
+        <div class="apollo-content__main">
+            <div class="container">
+                <div class="smart-content">
+                    <div class="smart-content__sidebar">
+                        <smart-search ng-if="searchOptions" options="searchOptions"></smart-search>
+                        <smart-filter ng-if="filterOptions" options="filterOptions"></smart-filter>
+                    </div>
+                    <div class="smart-content__main">
+                        <smart-toolbar options="toolbarOptions" smart-pager="pager"></smart-toolbar>
+                        <smart-loader2 ng-show="pager.data.length == 0" loading="pager.isLoading" text="{{ '_NoActivitiesFound_' | i18n }}"></smart-loader2>
+                        <simple-timeline options="timelineOptions"></simple-timeline>
+                        <smart-pager smart-pager="pager" sizes="pageSizes" display-all></smart-pager>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <apollo-footer></apollo-footer>
+    </div>
+</div>

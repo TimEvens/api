@@ -1,0 +1,39 @@
+<div class="apollo-body" ng-controller="versionController">
+    <apollo-header page-title="Versions"></apollo-header>
+    <div class="apollo-content">
+        <div class="apollo-content__main">
+            <div class="container">
+                <div class="responsive-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Version</th>
+                                <th>App Id</th>
+                                <th>Branch</th>
+                                <th>SHA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="app in apps">
+                                <td ng-bind="app.name"></td>
+                                <td ng-bind="app.version"></td>
+                                <td ng-bind="app.appId"></td>
+                                <td ng-bind="app.branch"></td>
+                                <td ng-bind="app.sha"></td>
+                            </tr>
+                            <tr>
+                                <td ng-bind="controller.name"></td>
+                                <td ng-bind="controller.version"></td>
+                                <td ng-bind="controller.appId"></td>
+                                <td ng-bind="controller.branch"></td>
+                                <td ng-bind="controller.sha"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <apollo-footer></apollo-footer>
+    </div>
+</div>

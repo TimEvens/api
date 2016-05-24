@@ -1,0 +1,125 @@
+<div class="main-content">
+  <h2><a name=""></a></h2>
+  <p>This is the  API</p>
+
+  <h2><a name="whoisAllGet"></a>whoisAllGet</h2>
+  <hr>
+  <p></p>
+  <p>This Who Is Endpoint returns placeholder</p>
+  <h3 class="section">URL</h3>
+  <code>https://api.openbmp.org/v1/whois/all</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="AsInfoLatLong"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+  </ul>
+  <h2><a name="whoisAsnAsnGet"></a>whoisAsnAsnGet</h2>
+  <hr>
+  <p></p>
+  <p>This Who Is Endpoint returns the whois info for the given ASN.\n</p>
+  <h3 class="section">URL</h3>
+  <code>https://api.openbmp.org/v1/whois/asn/{asn}</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="GenWhoIsAsn"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">asn</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">ASN Number</p>
+	  </li>
+  </ul>
+  <h2><a name="whoisAsnCountGet"></a>whoisAsnCountGet</h2>
+  <hr>
+  <p></p>
+  <p>This Who Is Endpoint returns the count of ASN matches based on WHERE clause</p>
+  <h3 class="section">URL</h3>
+  <code>https://api.openbmp.org/v1/whois/asn/count</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="GenericCount"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">where</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The Where clause in SQL query</p>
+	  </li>
+  </ul>
+  <h2><a name="whoisAsnGet"></a>whoisAsnGet</h2>
+  <hr>
+  <p></p>
+  <p>This Who Is Endpoint returns all whois information</p>
+  <h3 class="section">URL</h3>
+  <code>https://api.openbmp.org/v1/whois/asn</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="GenWhoIsAsn"><a href="">List</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">where</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">The Where clause in SQL query</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">limit</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">The Limit Value in SQL query</p>
+	  </li>
+  </ul>
+  <h2><a name="whoisAsnRelatedGet"></a>whoisAsnRelatedGet</h2>
+  <hr>
+  <p></p>
+  <p>This Who Is Endpoint returns placeholder.\n</p>
+  <h3 class="section">URL</h3>
+  <code>https://api.openbmp.org/v1/whois/{asn}/related</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>GET</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model="object"><a href="">Object</a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      
+      <span class="param-in">Path: </span>
+      
+      
+      <span class="param-name">asn</span>
+      <span class="param-type">Integer</span>
+      
+      <p class="param-description">ASN Number</p>
+	  </li>
+  </ul>
+</div>

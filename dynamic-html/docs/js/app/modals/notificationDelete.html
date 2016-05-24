@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true"><span class="icon-close"></span></button>
+    <h4 class="modal-title" ng-bind="'_NotificationDelete_' | i18n"></h4>
+</div>
+<div class="modal-body">
+    <p ng-if="conversations.length == 1" ng-bind-template="{{ '_HUNotificationsDeleteSingle_' | i18n }} {{ conversations[0].subject }}?"></p>
+    <p ng-if="conversations.length > 1" ng-bind-template="{{ '_HUNotificationsDeleteMultiPre_' | i18n }} {{ conversations.length }} {{ '_HUNotificationsDeleteMultiPost_' | i18n }}?"></p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="button" ng-click="$dismiss()" ga-collect="HU-NotCancelDel" ng-bind="'_Cancel_' | i18n"></button>
+    <button type="button" class="button button--danger" ng-click="$close()" ga-collect="HU-NotConfirmDel" ng-bind="'_Delete_' | i18n"></button>
+</div>

@@ -1,0 +1,22 @@
+<div class="apollo-body" ng-controller="releaseNotesController">
+    <apollo-header page-title="{{ '_ReleaseNotes_' | i18n }}"></apollo-header>
+    <div class="apollo-content">
+        <div class="apollo-content__main">
+            <div class="container">
+                <section ng-repeat="release in releaseData" class="section">
+                    <h3 class="section-header">
+                        <span ng-bind="'_Version_' | i18n"></span> 
+                        <span ng-bind="release.Version"></span>
+                    </h3>
+                    <ul>
+                        <li ng-repeat="note in release.Notes">
+                            <strong ng-bind="note['Customer Release Title']"></strong>
+                            <span class="text-muted" ng-bind="note['Customer Release Description']"></span>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+        <apollo-footer></apollo-footer>
+    </div>
+</div>

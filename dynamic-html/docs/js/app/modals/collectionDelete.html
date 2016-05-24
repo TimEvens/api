@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true"><span class="icon-close"></span></button>
+    <h4 class="modal-title" ng-bind="'_CollectionDelete_' | i18n"></h4>
+</div>
+<div class="modal-body">
+    <p ng-if="collections.length == 1" ng-bind-template="{{ '_HUCollectionsDeleteSingle_' | i18n }} {{ collections[0].displayName }}?"></p>
+    <p ng-if="collections.length > 1" ng-bind-template="{{ '_HUCollectionsDeleteMultiPre_' | i18n }} {{ collections.length }} {{ '_HUCollectionsDeleteMultiPost_' | i18n }}?"></p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="button" ng-click="$dismiss()" ga-collect="HU-CollCancelDel" ng-bind="'_Cancel_' | i18n"></button>
+    <button type="button" class="button button--danger" ng-click="$close();" ga-collect="HU-CollConfirmDel" ng-bind="'_Delete_' | i18n"></button>
+</div>
